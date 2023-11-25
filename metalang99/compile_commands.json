@@ -1,0 +1,7 @@
+[
+    {
+        "directory": "/home/uber/dev/lang/metalang99/sandbox/",
+        "command": "/usr/bin/clang -I. -fmacro-backtrace-limit=1 main.c",
+        "file": "main.c"
+    }
+ ]

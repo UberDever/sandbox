@@ -1,0 +1,11 @@
+If:
+  PathMatch: .*/stub.c
+
+Hover:
+  ShowAKA: No
+
+InlayHints:
+  Enabled: No
+
+Diagnostics:
+  Suppress: .*
