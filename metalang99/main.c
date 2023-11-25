@@ -1,27 +1,21 @@
 #include "metalang99.h"
 
-#define leaf(x)              ML99_choice(v(leaf), x)
-#define node(lhs, data, rhs) ML99_choice(v(node), lhs, data, rhs)
+#include <memory.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#define sumTree(tree)                     ML99_match(tree, v(sumTree_))
-#define sumTree_leaf_IMPL(x)              v(x)
-#define sumTree_node_IMPL(lhs, data, rhs) ML99_add3(sumTree(v(lhs)), v(data), sumTree(v(rhs)))
+#define BOXED_NUMBER_COUNT 128
 
-/*
- *         4
- *        / \
- *       /   \
- *      /     \
- *     2       6
- *    / \     / \
- *   1   3   5   7
- */
-#define TREE node(node(leaf(v(1)), v(2), leaf(v(3))), v(4), node(leaf(v(5)), v(6), leaf(v(7))))
+#define BOXED_NUMBER_IMPL(i) v(int *_##i = (int *)malloc(sizeof(int));)
+#define BOXED_NUMBER_ARITY 1
 
-ML99_ASSERT_EQ(sumTree(TREE), v(28));
-
-#define F_IMPL(x, y) v(x + y)
+#define BOXED_NUMBER_INIT_IMPL(i) v(*_##i = i;)
+#define BOXED_NUMBER_INIT_ARITY 1
 
 int main(int argc, char **argv) {
-    return 0;
+
+  ML99_EVAL(ML99_repeat(v(BOXED_NUMBER_COUNT), v(BOXED_NUMBER)));
+  ML99_EVAL(ML99_repeat(v(BOXED_NUMBER_COUNT), v(BOXED_NUMBER_INIT)));
+
+  return 0;
 }

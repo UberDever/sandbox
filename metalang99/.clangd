@@ -1,5 +1,5 @@
 If:
-  PathMatch: .*/stub.c
+  PathMatch: .*/(stub.c|main.c)
 
 Hover:
   ShowAKA: No
